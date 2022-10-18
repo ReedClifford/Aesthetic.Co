@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
 import men from "../../assets/category-assets/men-category.jpg";
 import google from "../../assets/google.png";
 import FormInput from "../../components/FormInputs/FormInputs";
+import { UserContext } from "../../contexts/user.context";
 import {
   createUserRefDocAuth,
   signInUserWithEmailAndPassword,
@@ -14,7 +15,7 @@ const SignIn = () => {
   const defaultFormDetails = { email: "", password: "" };
   const [formDetails, setFormDetails] = useState(defaultFormDetails);
   const { email, password } = formDetails;
-
+  const { setCurrentUser } = useContext(UserContext);
   const resetFormFields = () => {
     setFormDetails(defaultFormDetails);
   };
@@ -24,18 +25,19 @@ const SignIn = () => {
   };
   const signInOnClickHandler = async () => {
     const { user } = await signInWithGooglePopup();
-    createUserRefDocAuth(user);
+    await createUserRefDocAuth(user);
   };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await signInUserWithEmailAndPassword(email, password);
-      console.log(res);
+      const { user } = await signInUserWithEmailAndPassword(email, password);
+
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
-        case "auth/invalid-password":
+        case "auth/wrong-password":
           alert("incorrect password for email");
 
           break;
@@ -44,7 +46,7 @@ const SignIn = () => {
           break;
 
         default:
-          console.log(error.message);
+          console.log(error);
           break;
       }
     }
@@ -62,7 +64,7 @@ const SignIn = () => {
           onSubmit={onSubmitHandler}
         >
           <FormInput
-            className="p-2 rounded-md"
+            className="p-2 rounded-sm"
             placeholder="email"
             type="email"
             onChange={onChangeHandler}
@@ -70,7 +72,7 @@ const SignIn = () => {
             value={email}
           />
           <FormInput
-            className="p-2 rounded-md"
+            className="p-2 rounded-sm"
             placeholder="password"
             type="password"
             onChange={onChangeHandler}

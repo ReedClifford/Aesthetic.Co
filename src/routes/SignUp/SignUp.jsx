@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
 import signupBg from "../../assets/category-assets/jackets-category.jpg";
-
 import FormInput from "../../components/FormInputs/FormInputs";
+import { UserContext } from "../../contexts/user.context";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -17,6 +17,8 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   };
+  const { setCurrentUser } = useContext(UserContext);
+
   const [formDetails, setFormDetails] = useState(defaultFormDetails);
   const { displayName, email, password, confirmPassword } = formDetails;
 
@@ -39,7 +41,9 @@ const SignUp = () => {
         email,
         password
       );
+      setCurrentUser(user);
       await createUserRefDocAuth(user, { displayName });
+
       alert("Sign Up Success");
       resetFormFields();
     } catch (err) {
@@ -67,7 +71,7 @@ const SignUp = () => {
             onSubmit={onSubmitHandler}
           >
             <FormInput
-              className="p-2 rounded-md"
+              className="p-2 rounded-sm"
               type="text"
               placeholder="Display Name"
               required
@@ -76,7 +80,7 @@ const SignUp = () => {
               onChange={onChangeHandler}
             />
             <FormInput
-              className="p-2 rounded-md"
+              className="p-2 rounded-sm"
               type="email"
               placeholder="Email"
               required
@@ -85,7 +89,7 @@ const SignUp = () => {
               onChange={onChangeHandler}
             />
             <FormInput
-              className="p-2 rounded-md"
+              className="p-2 rounded-sm"
               type="password"
               placeholder="Password"
               required
@@ -94,7 +98,7 @@ const SignUp = () => {
               onChange={onChangeHandler}
             />
             <FormInput
-              className="p-2 rounded-md"
+              className="p-2 rounded-sm"
               type="password"
               placeholder="Confirm Password"
               required

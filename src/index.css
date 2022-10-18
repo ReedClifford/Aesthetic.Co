@@ -46,7 +46,7 @@
     backdrop-blur-lg bg-black/50 shadow-sm shadow-slate-500   text-slate-50 text-center rounded-md;
 }
 .card-bg-img {
-  @apply absolute w-full h-full top-0 right-0 object-cover 
+  @apply absolute w-full h-full object-cover inset-0
     object-center mix-blend-overlay rounded-sm;
 }
 

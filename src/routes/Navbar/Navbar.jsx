@@ -1,10 +1,14 @@
-import React from "react";
+import { Fragment, useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
+import { UserContext } from "../../contexts/user.context";
 
 const Navbar = () => {
+  const { currentUser } = useContext(UserContext);
+  console.log(currentUser);
+  console.log("No User logged in yet");
   return (
-    <React.Fragment>
+    <Fragment>
       <nav className="navbar">
         <div>
           <Link to="/">
@@ -24,7 +28,7 @@ const Navbar = () => {
         </ul>
       </nav>
       <Outlet />
-    </React.Fragment>
+    </Fragment>
   );
 };
 export default Navbar;
