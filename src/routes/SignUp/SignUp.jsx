@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
 import signupBg from "../../assets/category-assets/jackets-category.jpg";
 import FormInput from "../../components/FormInputs/FormInputs";
-import { UserContext } from "../../contexts/user.context";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -11,13 +10,14 @@ import {
 } from "../../utls/firebase/firebase.utils";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const defaultFormDetails = {
     displayName: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
 
   const [formDetails, setFormDetails] = useState(defaultFormDetails);
   const { displayName, email, password, confirmPassword } = formDetails;
@@ -41,11 +41,12 @@ const SignUp = () => {
         email,
         password
       );
-      setCurrentUser(user);
+      // setCurrentUser(user);
       await createUserRefDocAuth(user, { displayName });
 
       alert("Sign Up Success");
       resetFormFields();
+      navigate("/signIn");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         alert("Cannot create user,email already in use");

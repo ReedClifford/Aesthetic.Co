@@ -4,8 +4,10 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -54,6 +56,12 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
     console.log(error);
   }
 };
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
 /*================================================ F I R E S T O R E ==============================================*/
 
 export const firebaseDB = getFirestore(); //Initialize db instance

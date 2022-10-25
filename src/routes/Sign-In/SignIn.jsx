@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
 import men from "../../assets/category-assets/men-category.jpg";
 import google from "../../assets/google.png";
 import FormInput from "../../components/FormInputs/FormInputs";
-import { UserContext } from "../../contexts/user.context";
+
 import {
-  createUserRefDocAuth,
   signInUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utls/firebase/firebase.utils";
 
 const SignIn = () => {
   const defaultFormDetails = { email: "", password: "" };
+  const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState(defaultFormDetails);
   const { email, password } = formDetails;
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
   const resetFormFields = () => {
     setFormDetails(defaultFormDetails);
   };
@@ -23,9 +23,8 @@ const SignIn = () => {
     const { name, value } = e.target;
     setFormDetails({ ...formDetails, [name]: value });
   };
-  const signInOnClickHandler = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserRefDocAuth(user);
+  const signInWithGoogleOnClickHandler = async () => {
+    await signInWithGooglePopup();
   };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -33,8 +32,9 @@ const SignIn = () => {
     try {
       const { user } = await signInUserWithEmailAndPassword(email, password);
 
-      setCurrentUser(user);
+      // setCurrentUser(user);
       resetFormFields();
+      navigate("/");
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -88,7 +88,7 @@ const SignIn = () => {
           <button
             type="button"
             className="signIntoGoogleBtn"
-            onClick={signInOnClickHandler}
+            onClick={signInWithGoogleOnClickHandler}
           >
             <span>
               <img src={google} alt="google" className="w-5" />
