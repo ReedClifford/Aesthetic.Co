@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
 import CartIcon from "../../components/Cart Icon/CartIcon";
-import CardDropdown from "../../components/CartDropdown/CartDropdown";
+import CartDropdown from "../../components/CartDropdown/CartDropdown";
 import { DropdownContext } from "../../contexts/cartDropdown.context";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utls/firebase/firebase.utils";
@@ -37,9 +37,9 @@ const Navbar = () => {
               <NavLink to="/signIn">Sign In</NavLink>
             </li>
           )}
-          {currentUser && <CartIcon />}
+          {currentUser ? <CartIcon /> : null}
         </ul>
-        {isActive && <CardDropdown />}
+        {isActive ? <CartDropdown /> : null}
       </nav>
       <Outlet />
     </Fragment>

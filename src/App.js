@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Checkout from "./routes/Checkout/Checkout";
 import MainDirectory from "./routes/MainDirectory/MainDirectory";
 import Navbar from "./routes/Navbar/Navbar";
 import Shop from "./routes/Shop/Shop";
@@ -13,6 +14,7 @@ const App = () => {
           <Route index element={<MainDirectory />} />
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={"contact"} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
