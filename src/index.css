@@ -4,7 +4,7 @@
 
 /* ROOT */
 .root-container {
-  @apply min-h-screen min-w-full container mx-auto relative;
+  @apply min-h-screen min-w-full container mx-auto relative bg-white;
 }
 
 /* NAVBAR */
@@ -47,18 +47,19 @@
 }
 .card-bg-img {
   @apply absolute w-full h-full object-cover inset-0
-    object-center mix-blend-overlay rounded-sm;
+    object-center mix-blend-overlay rounded-sm hover:scale-110 duration-700 ease-in-out;
 }
 
 /* SIGN IN PAGE */
 .signIn-main-pageContainer {
-  @apply absolute inset-0 h-full w-full flex flex-col justify-center  items-center;
+  @apply absolute inset-0 h-full w-full flex flex-col justify-center  items-center bg-gradient-to-tr from-neutral-600 
+  to-neutral-800;
 }
 
 .signIn-form-container {
   @apply py-10 px-14 flex flex-col justify-evenly min-h-fit  sm:w-full md:max-w-fit
   items-center gap-8 shadow-md shadow-slate-900 rounded-md absolute 
- bg-red-50 z-50 filter backdrop-blur-sm bg-white/80
+ bg-red-50 z-50 filter backdrop-blur-sm bg-white/70
  border-2 border-slate-100;
 }
 .signIn-btn-container {
@@ -73,7 +74,7 @@
   @apply text-center font-medium  text-slate-700 hover:text-black hover:duration-300 hover:ease-in-out;
 }
 .signIn-bg-img {
-  @apply absolute top-0 left-0 h-full w-full object-cover object-center mix-blend-overlay z-0;
+  @apply absolute top-0 left-0 h-full w-full object-cover object-center mix-blend-overlay;
 }
 .createAccount-link {
   @apply font-semibold text-slate-700 hover:text-black hover:duration-300 hover:ease-in-out;

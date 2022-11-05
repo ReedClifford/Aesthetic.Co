@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/aesthetic-logo.png";
-import men from "../../assets/category-assets/men-category.jpg";
+import man from "../../assets/category-assets/men-category.jpg";
 import google from "../../assets/google.png";
 import FormInput from "../../components/FormInputs/FormInputs";
 
@@ -106,7 +106,7 @@ const SignIn = () => {
           </Link>
         </div>
       </div>
-      <img src={men} alt="men" className="signIn-bg-img" />
+      <img src={man} alt="men" className="signIn-bg-img" />
     </section>
   );
 };

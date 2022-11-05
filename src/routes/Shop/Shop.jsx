@@ -1,16 +1,18 @@
 import { Fragment, useContext } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { ProductContext } from "../../contexts/products.context";
+import { CategoriesContext } from "../../contexts/categories.contexts";
 const Shop = () => {
-  const { products } = useContext(ProductContext);
-  const shopData = products.map((product) => {
-    return <ProductCard key={product.id} product={product} />;
+  const { categoriesMap } = useContext(CategoriesContext);
+  const shopData = Object.keys(categoriesMap).map((title) => {
+    return categoriesMap[title].map((product) => {
+      return <ProductCard key={product.id} product={product} />;
+    });
   });
 
   return (
     <Fragment>
       <div className="container mx-auto mt-10">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
           {shopData}
         </div>
       </div>

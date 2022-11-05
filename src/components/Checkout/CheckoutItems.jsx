@@ -1,3 +1,5 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useContext } from "react";
 import { DropdownContext } from "../../contexts/cartDropdown.context";
 
@@ -21,24 +23,26 @@ const CheckoutItems = () => {
               <h1>{name}</h1>
               <div className="flex">
                 <div
-                  className="px-2 border cursor-pointer"
+                  className=" px-2 border  cursor-pointer text-center flex justify-center items-center"
                   onClick={() => addItemToCart(cartItem)}
                 >
-                  {`<`}
+                  {`+`}
                 </div>
-                <span className="font-extrabold px-2">{quantity}</span>
+                <span className="font-bold px-2 border bg-neutral-100">
+                  {quantity}
+                </span>
                 <div
-                  className="px-2 border cursor-pointer"
+                  className="  px-2 border  cursor-pointer text-center flex justify-center items-center"
                   onClick={() => removeItemtoCart(cartItem)}
-                >{`>`}</div>
+                >{`-`}</div>
               </div>
-              <span>{price}</span>
+              <span>${price}</span>
               <button
                 onClick={() => clearItemFromCart(cartItem)}
-                className="bg-red-600 text-neutral-100 font-medium 
-                px-4 py-2 rounded-md hover:bg-neutral-900 duration-500 ease-in-out"
+                className=" text-neutral-700  border border-white
+                px-4 py-2 rounded-md hover:border-slate-900 hover:text-black duration-500 ease-in-out"
               >
-                remove
+                <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
               </button>
             </div>
           </div>
