@@ -9,7 +9,7 @@ const CartItem = ({ cartItem }) => {
       <div className="flex flex-col text-end">
         <h2 className="font-semibold">{name}</h2>
         <span>
-          {quantity} x ${price}
+          {quantity} x ₱{price}
         </span>
       </div>
     </div>

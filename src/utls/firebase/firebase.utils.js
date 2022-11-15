@@ -115,10 +115,11 @@ export const addCollectionAndDocuments = async (
 };
 
 export const getCategoriesAndDocuments = async () => {
-  const collecitonRef = collection(firebaseDB, "categories");
-  const q = query(collecitonRef);
+  const collectionRef = collection(firebaseDB, "COLLECTION_LIST");
+  const q = query(collectionRef);
 
   const querySnapShots = await getDocs(q);
+
   const categoryMap = querySnapShots.docs.reduce((accu, docSnapShots) => {
     const { title, items } = docSnapShots.data();
     accu[title.toLowerCase()] = items;

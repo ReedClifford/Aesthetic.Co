@@ -25,13 +25,14 @@ const SignIn = () => {
   };
   const signInWithGoogleOnClickHandler = async () => {
     await signInWithGooglePopup();
+    navigate("/");
   };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
       const { user } = await signInUserWithEmailAndPassword(email, password);
-
+      console.log(user.displayName);
       // setCurrentUser(user);
       resetFormFields();
       navigate("/");

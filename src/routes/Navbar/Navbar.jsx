@@ -8,7 +8,7 @@ import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utls/firebase/firebase.utils";
 const Navbar = () => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+
   console.log("No User logged in yet");
   const { isActive } = useContext(DropdownContext);
 

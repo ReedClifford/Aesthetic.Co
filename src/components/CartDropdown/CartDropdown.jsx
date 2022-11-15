@@ -12,7 +12,7 @@ const CartDropdown = () => {
   return (
     <div
       className="border  border-neutral-900 h-72 w-64 p-1 absolute  xs:right-5 xs:top-16  sm:right-10 sm:top-64  gap-6  overflow-y-scroll 
-      bg-neutral-50 md:right-5 md:top-14  flex flex-col  items-center"
+      bg-neutral-50 md:right-5 md:top-14   flex flex-col  items-center"
     >
       <div className=" flex flex-col gap-1 my-3 ">
         {cartItems.map((item) => {

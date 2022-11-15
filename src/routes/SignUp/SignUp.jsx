@@ -41,7 +41,7 @@ const SignUp = () => {
         email,
         password
       );
-      // setCurrentUser(user);
+
       await createUserRefDocAuth(user, { displayName });
 
       alert("Sign Up Success");
