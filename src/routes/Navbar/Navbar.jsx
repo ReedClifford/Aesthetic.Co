@@ -17,17 +17,13 @@ const Navbar = () => {
       <nav className="navbar">
         <div>
           <Link to="/">
-            <img src={logo} alt="logo " className="md:w-48 " />
+            <img src={logo} alt="logo " className=" md:w-48   " />
           </Link>
         </div>
         <ul className="navbar-items">
           <li className="nav-link">
             <NavLink to="/shop">Shop</NavLink>
           </li>
-          <li className="nav-link">
-            <NavLink to="/contact">Contact</NavLink>
-          </li>
-
           {currentUser ? (
             <button className="nav-link" onClick={signOutUser}>
               Sign Out

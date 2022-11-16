@@ -1,11 +1,17 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { DropdownContext } from "../../contexts/cartDropdown.context";
+import { UserContext } from "../../contexts/user.context";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
   const { name, imageUrl, price } = product;
 
+  const { currentUser } = useContext(UserContext);
   const { addItemToCart } = useContext(DropdownContext);
-  const addProductToCart = () => addItemToCart(product);
+  const addProductToCart = () => {
+    !currentUser ? navigate("/signIn") : addItemToCart(product);
+  };
 
   return (
     <div className="p-2 shadow-md shadow-neutral-200  border border-neutral-300  h-fit backdrop-blur-sm bg-white/90 hover:scale-105 duration-300 ease-in-out">
